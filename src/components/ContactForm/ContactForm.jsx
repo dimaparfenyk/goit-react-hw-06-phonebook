@@ -1,9 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux/es/exports";
 import { nanoid } from 'nanoid'
 import PropTypes from 'prop-types';
 import { Button, Container, Label, FormInput} from "./ContactForm.styled";
 
+import { add, remove } from "components/redux/store";
 
 export function ContactForm({onSubmit}) {
     const [ name, setName ] = useState('');
@@ -12,6 +13,10 @@ export function ContactForm({onSubmit}) {
     const nameInputId = nanoid();
     const numberInputId = nanoid();
 
+    // 
+    const contact = useSelector(state => state.contact)
+    const dispatch=useDispatch()
+    // 
    const handleChange = e => {
         const { name, value } = e.currentTarget;
     
@@ -31,6 +36,7 @@ export function ContactForm({onSubmit}) {
 
     const  handleSubmit = e => {
         e.preventDefault();
+        
         onSubmit(name, number);
         setName('');
         setNumber('');
@@ -67,7 +73,8 @@ export function ContactForm({onSubmit}) {
                 <Button
                     type="submit">
                     Add Contact
-                    </Button>
+                </Button>
+                <Button onClick={()=>dispatch(add(name))}>Add by Redux</Button>
             </Container>
             </form>
         );

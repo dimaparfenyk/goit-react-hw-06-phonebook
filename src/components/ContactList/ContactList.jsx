@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { nanoid } from "nanoid";
 import { List, ListItem, Button, Text,SubText } from "./ContactList.styled";
 
-
 export const ContactList = ({contacts, deleteContact}) => {
     
     return (<List>
@@ -11,7 +10,7 @@ export const ContactList = ({contacts, deleteContact}) => {
             <ListItem key={nanoid()}>
                 <SubText>{name}:</SubText>
                 <Text>{number}</Text>
-                <Button onClick={() => deleteContact(id)}>Удалить</Button>
+                <Button onClick={() => deleteContact(id)}>Удалить</Button>    
             </ListItem>
         )}
     </List>)
