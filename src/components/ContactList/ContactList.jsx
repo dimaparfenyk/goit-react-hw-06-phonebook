@@ -5,12 +5,16 @@ import { removeContact } from "components/redux/features/contactSlice";
 import { List, ListItem, Button, Text,SubText } from "./ContactList.styled";
 
 export const ContactList = () => {
-
+    const filter = useSelector(state => state.filter.value);
     const contacts = useSelector(state => state.contacts.contacts);
     const dispatch= useDispatch()
 
+    const filteredItems = filter
+        ? contacts.filter(({ name }) => name.toLowerCase().includes(filter))
+        : contacts;
+    
     return (<List>
-        {contacts.map(({ name, number, id}) =>
+        {filteredItems.map(({ name, number, id}) =>
             <ListItem key={id}>
                 <SubText>{name}:</SubText>
                 <Text>{number}</Text>
