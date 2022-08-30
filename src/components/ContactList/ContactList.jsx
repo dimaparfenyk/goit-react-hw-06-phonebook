@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux'
-// import { nanoid } from "nanoid";
-import { List, ListItem, Button, Text,SubText } from "./ContactList.styled";
+import { useSelector, useDispatch } from 'react-redux';
 import { removeContact } from "components/redux/features/contactSlice";
+import { List, ListItem, Button, Text,SubText } from "./ContactList.styled";
 
 export const ContactList = () => {
+
     const contacts = useSelector(state => state.contacts.contacts);
     const dispatch= useDispatch()
 
@@ -21,7 +21,6 @@ export const ContactList = () => {
 };
 
 ContactList.proptype = {
-    deleteContact:PropTypes.func,
     contacts: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
